@@ -39,7 +39,17 @@ const getAmbulanceStatus = async (req, res) => {
   }
 };
 
+const getAllInRouteAmbulances = async (req, res) => {
+  try {
+    const ambulances = await Ambulance.find({ status: 'in_route' });
+    res.json(ambulances);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   updateLocation,
-  getAmbulanceStatus
+  getAmbulanceStatus,
+  getAllInRouteAmbulances
 };
